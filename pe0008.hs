@@ -20,13 +20,13 @@ spans :: Int -> [a] -> [[a]]
 spans n []     = []
 spans n (x:xs) = (fst $ splitAt n (x:xs)):(spans n xs)
 
-stringProduct :: String -> Int
-stringProduct s = product $ map digitToInt s
+stringProduct :: String -> Integer
+stringProduct s = product $ map (fromIntegral . digitToInt) s
 
 -- (theProduct, theDigits) = largestProduct numDigits digitString
 largestProduct :: Int -> [Char] -> (Integer, [Int])
 largestProduct numDigits digitString =
-  (fromIntegral $ maximum $ products numDigits digitString , [6,7]) where
+  (maximum $ products numDigits digitString , [6,7]) where
     products n s = map stringProduct $ spans n s
 {-
   let nonZeroChunks = splitOn "0" digitString,
