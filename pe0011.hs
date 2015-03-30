@@ -77,10 +77,11 @@ gridCols g = length $ head g
 
 slice :: SizeI -> Grid -> (SizeI, SizeI) -> (SizeI, SizeI) -> Tuple
 slice size g (startRow, startCol) (dRow, dCol) =
-  take size [
+            [
        	     gridGet g (r, c) |
-       	     r <- [startRow, startRow + dRow ..],
-       	     c <- [startCol, startCol + dCol ..]
+	     i <- [0 .. size-1],
+	     r <- [startRow + i * dRow],
+	     c <- [startCol + i * dCol]
 	    ]
 
 sliceH size g (row, col) = slice size g (row, col) (0, 1)
