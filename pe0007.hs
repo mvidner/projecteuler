@@ -1,3 +1,5 @@
+module PE0007 where
+
 -- Spotted on the front page of haskell.org
 -- but Melissa O'Neil calls it The Unfaithful Sieve
 -- in http://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf

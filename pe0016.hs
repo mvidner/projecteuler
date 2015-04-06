@@ -1,3 +1,5 @@
+module PE0016 where
+
 import Data.Char (digitToInt)
 
 main = do

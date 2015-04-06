@@ -1,3 +1,5 @@
+module PE0003 where
+
 -- spotted on the front page of haskell.org
 primes = sieve [2..]
   where sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]

@@ -1,3 +1,5 @@
+module PE0004 where
+
 isPalindrome :: String -> Bool
 isPalindrome s = s == reverse s
 

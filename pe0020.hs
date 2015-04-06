@@ -1,3 +1,5 @@
+module PE0020 where
+
 import Data.Char (digitToInt)
 
 factorial 0 = 1

@@ -1,3 +1,5 @@
+module PE0006 where
+
 import Control.Applicative  -- <$> and <*>
 
 sumn n = (n + 1) * n `div` 2

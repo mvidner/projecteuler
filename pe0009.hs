@@ -1,3 +1,4 @@
+module PE0009 where
 
 isPythagoreanTriplet :: (Num a, Eq a) => (a, a, a) -> Bool
 isPythagoreanTriplet (a, b, c) = a^2 + b^2 == c^2

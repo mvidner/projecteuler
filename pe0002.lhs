@@ -21,8 +21,13 @@ do not exceed four million, find the sum of the even-valued terms.
 This is a brute force solution.
 
 \begin{code}
+module PE0002 where
+
 fib2 (a,b) = (b,a+b)
 
+-- |
+-- >>> take 10 fibs
+-- [0,1,1,2,3,5,8,13,21,34]
 fibs = map fst $ scanl (\a  _ -> fib2 a) (0,1) [1..]
 
 main = do

@@ -1,3 +1,5 @@
+module PE0010 where
+
 -- trial division from pe0007
 primes = 2 : [x | x <- [3..], isprime x]
 

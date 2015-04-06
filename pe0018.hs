@@ -1,3 +1,5 @@
+module PE0018 where
+
 import Data.Char (isDigit)
 
 type Row = [Int]

@@ -1,3 +1,5 @@
+module PE0017 where
+
 import Data.Char (isLetter)
 
 digitWords =

@@ -1,3 +1,5 @@
+module PE0011 where
+
 import Data.Char (isDigit, digitToInt)
 import Data.List (tails)
 import System.IO
