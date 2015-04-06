@@ -1,3 +1,5 @@
+module PE0022 where
+
 import Data.Char (ord)
 import Data.List (sort)
 import Data.Text (splitOn, pack, unpack)
@@ -5,10 +7,11 @@ import Data.Text (splitOn, pack, unpack)
 parse :: String -> [String]
 parse s = map (read . unpack) $ splitOn (pack ",") (pack s)
 
--- wordValue "ABCD"
--- >>> 10
--- wordValue "COLIN"
--- >>> 53
+-- |
+-- >>> wordValue "ABCD"
+-- 10
+-- >>> wordValue "COLIN"
+-- 53
 wordValue :: String -> Int
 wordValue s = sum $ map letterValue s
   where letterValue c | ('A' <= c && c <= 'Z') = (ord c) - (ord 'A') + 1
