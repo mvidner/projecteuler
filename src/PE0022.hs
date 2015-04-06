@@ -29,7 +29,7 @@ scoreValues vs = zipWith (\ (s, v) (_, i) -> (s, v*i))
                          (map (\i -> ("",i)) [1..])
 
 main = do
-  text <- readFile "pe0022-names.txt"
+  text <- readFile "PE0022-names.txt"
   let names = parse text
   let sortedNameValues = sortedValues names
   let scoredNameValues = scoreValues sortedNameValues

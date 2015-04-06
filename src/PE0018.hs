@@ -39,7 +39,7 @@ maximumPathSum = maximum . graphPath
 
 getGraph :: IO TriangleGraph
 getGraph = do
-  text <- readFile "pe0018-Maximum-path-sum-I.txt"
+  text <- readFile "PE0018-Maximum-path-sum-I.txt"
   let graphText = getGraphText text
   return $ parseGraph graphText
 

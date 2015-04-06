@@ -1,6 +1,6 @@
 module PE0010 where
 
--- trial division from pe0007
+-- trial division from PE0007
 primes = 2 : [x | x <- [3..], isprime x]
 
 isprime x = all (\p -> x `mod` p > 0) (factorsToTry x)

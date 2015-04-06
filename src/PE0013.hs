@@ -20,7 +20,7 @@ hasDigitsOnly s = (all isDigit s) && (s /= "")
 
 largeSum :: IO Integer
 largeSum = do
-  contents <- readFile "pe0013-Large-sum.txt"
+  contents <- readFile "PE0013-Large-sum.txt"
   return $ sum $ numbersIn contents
 
 firstDigits :: Int -> Integer -> String

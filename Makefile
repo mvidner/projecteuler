@@ -5,8 +5,8 @@
 
 .PHONY: check
 check:
-	doctest -ilib pe????*hs
+	cd src; doctest *hs
 
 .PHONY: clean
 clean:
-	-rm -f *.hi *.o *.aux *.log *~
+	-cd src; rm -f *.hi *.o *.aux *.log *~

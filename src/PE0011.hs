@@ -93,7 +93,7 @@ sliceB size g (row, col) = slice size g (row, col) (1, 1)
 
 main :: IO ()
 main = do
-  grid <- readGrid "pe0011-Largest-product-in-a-grid.txt"
+  grid <- readGrid "PE0011-Largest-product-in-a-grid.txt"
 --  print $ sliceH 4 grid (1, 2)
   print $ maximumProductOfTuples 4 grid
 --  print $ candidateTuplesHorizontal 4 grid

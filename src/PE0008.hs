@@ -6,7 +6,7 @@ import Data.List.Split
 
 fileContents :: IO String
 fileContents = do
-  handle   <- openFile "pe0008-Largest-product-in-a-series.txt" ReadMode
+  handle   <- openFile "PE0008-Largest-product-in-a-series.txt" ReadMode
   contents <- hGetContents handle
   print $ lines contents -- why needed??
   hClose handle
