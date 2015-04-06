@@ -1,6 +1,7 @@
 module PE0023 where
 
 import PrimeFactors (allDivisors)
+import qualified Data.Set as Set
 
 sumOfProperDivisors n = sum (allDivisors n) - n
 
@@ -18,12 +19,14 @@ isAbundant n =
 abundantNumbers :: [Integer]
 abundantNumbers = map fromIntegral $ filter isAbundant [1..]
 
-sumsOfTwoAbundantNumbers = [a + b |
-                            a <- abundantNumbers,
-                            b <- abundantNumbers,
-                            -- careful, b <= a would have a iterate to infinity
-                            a <= b]
-                            -- but this is still wrong
+sumsOfTwoAbundantNumbersUnder :: Integer -> Set.Set Integer
+sumsOfTwoAbundantNumbersUnder limit =
+    let ans = takeWhile (< limit) abundantNumbers
+        allSums = [a + b |
+                   a <- ans,
+                   b <- ans,
+                   a <= b]
+    in Set.fromList allSums
 
 -- isS2A = `elem` sumsOfTwoAbundantNumbers
 
@@ -34,7 +37,9 @@ sumInts n = n * (n + 1) `div` 2
 limit :: Integer
 limit = 28123
 
-answer = (sumInts limit) - (sum $ takeWhile (<= limit) sumsOfTwoAbundantNumbers)
+answer = (sumInts limit) - (sum summableNumbers)
+         where summableNumbers =
+                   takeWhile (<= limit) $ Set.toList $ sumsOfTwoAbundantNumbersUnder limit
 
 main = do
   print answer
