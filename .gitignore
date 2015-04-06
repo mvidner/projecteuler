@@ -10,3 +10,5 @@ pe????
 .cabal-sandbox/
 cabal.sandbox.config
 dist/
+# haddock
+doc/

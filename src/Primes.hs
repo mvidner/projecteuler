@@ -1,4 +1,10 @@
-module Primes where
+module Primes
+    ( primes
+    , unfaithfulSievePrimes
+    , trialDivisionPrimes
+    ) where
+
+primes = trialDivisionPrimes
 
 unfaithfulSievePrimes = sieve [2..]
   where sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
