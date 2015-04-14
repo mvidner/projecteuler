@@ -14,6 +14,7 @@ unfaithfulSievePrimes = sieve [2..]
 -- in http://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf
 trialDivisionPrimes = 2 : [x | x <- [3..], isPrime x]
 
-isPrime x = all (\p -> x `mod` p > 0) (factorsToTry x)
+isPrime x | x < 2 = False
+isPrime x | otherwise = all (\p -> x `mod` p > 0) (factorsToTry x)
   where
     factorsToTry x = takeWhile (\p -> p*p <= x) trialDivisionPrimes
