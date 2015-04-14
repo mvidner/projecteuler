@@ -1,10 +1,11 @@
 # make all needs this but then make check fails ?!
-#GHCFLAGS=-isrc
+GHCFLAGS=-isrc
 %: %.hs
 	ghc --make $(GHCFLAGS) $@
 %: %.lhs
 	ghc --make $(GHCFLAGS) $@
 
+.SECONDARY:
 src/pe%.hs: src/PE%.*hs
 	N=$*   ;\
 	: > $@ ;\
@@ -19,6 +20,7 @@ all:
 
 .PHONY: check
 check:
+	-rm     src/[[:upper:]]*.o # Really. Otherwise doctest wont find funcs
 	doctest src/[[:upper:]]*hs
 
 .PHONY: clean

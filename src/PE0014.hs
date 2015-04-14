@@ -9,6 +9,7 @@ collatzStep n | otherwise = 3 * n + 1
 -- |
 -- >>> collatzChain 3
 -- [3,10,5,16,8,4,2,1]
+collatzChain :: Integral a => a -> [a]
 collatzChain 1 = [1]
 collatzChain n | n > 1     = n : collatzChain (collatzStep n)
 collatzChain n | otherwise = []

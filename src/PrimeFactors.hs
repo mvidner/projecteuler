@@ -40,6 +40,7 @@ canonicalRepresentation n =
 -- |
 -- >>> prod [1,3,9] [1,2,4]
 -- [1,2,4,3,6,12,9,18,36]
+prod :: Num a => [a] -> [a] -> [a]
 prod as bs = [a * b | a <- as, b <- bs]
 
 allDivisorsFromCanonicalRepresentation :: [(Integer, Int)] -> [Integer]
