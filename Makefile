@@ -1,11 +1,11 @@
-GHCFLAGS=-isrc -rtsopts
+GHCFLAGS=-isrc -rtsopts -O2
 %: %.hs
 	ghc --make $(GHCFLAGS) $@
 %: %.lhs
 	ghc --make $(GHCFLAGS) $@
 
 .SECONDARY:
-src/pe%.hs: src/PE%.*hs
+src/pe%.hs: $(wildcard src/PE%.*hs)
 	N=$*   ;\
 	: > $@ ;\
 	echo "module Main where"      >> $@ ;\
@@ -15,7 +15,7 @@ src/pe%.hs: src/PE%.*hs
 MAKE_N = $(MAKE) --no-print-directory
 .PHONY: all
 all:
-	for i in `seq -w 0001 27`; do $(MAKE_N) src/pe$$i; done
+	for i in `seq -w 0001 28`; do $(MAKE_N) src/pe$$i; done
 
 .PHONY: check
 check:
