@@ -1,4 +1,7 @@
 pe????
+# generated Main runners
+pe????.hs
+
 *.hi
 *.o
 # LaTeX

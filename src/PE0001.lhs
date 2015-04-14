@@ -5,6 +5,7 @@ Problem 1:
 
   Find the sum of all the multiples of 3 or 5 below 1000.
 
+> module PE0001 where
 > import System.Environment (getArgs)
 
 First let's do a brute force solution to practice Haskell basics:
