@@ -20,9 +20,16 @@ all:
 
 .PHONY: check
 check:
-	-rm     src/[[:upper:]]*.o # Really. Otherwise doctest wont find funcs
-	doctest src/[[:upper:]]*hs
+	cabal test
 
 .PHONY: clean
 clean:
 	-cd src; rm -f pe???? *.hi *.o *.aux *.log *~
+
+.PHONY: run
+run: all
+	cd src ;\
+	for i in ./pe????; do \
+	  echo $$i ;\
+	  time $$i ;\
+	done
