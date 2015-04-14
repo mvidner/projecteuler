@@ -12,7 +12,7 @@ import Data.Function (on)
 type Aperiodic = Double -- dubious but uninteresting
 type Digit = Int
 
--- | Decomposes (1 / n) to an aperiodic part after the decimal point
+-- Decomposes (1 / n) to an aperiodic part after the decimal point
 -- and a recurring digit cycle
 -- >>> unitFractionCycle 2
 -- ([5],[])
@@ -54,6 +54,7 @@ uncycle xs =
 -- |
 -- >>> remainderCycle 13 1
 -- [1,10,9,12,3,4]
+--
 -- Note that this is not a cycle but a graph containing a cycle:
 -- >>> remainderCycle 6 1
 -- [1,4]

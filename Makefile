@@ -5,7 +5,7 @@
 
 .PHONY: check
 check:
-	cd src; doctest *hs
+	doctest src/[[:upper:]]*hs
 
 .PHONY: clean
 clean:

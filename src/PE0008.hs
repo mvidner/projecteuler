@@ -2,7 +2,7 @@ module PE0008 where
 
 import System.IO
 import Data.Char (isDigit, digitToInt)
-import Data.List.Split
+import Data.List.Split (splitOn)
 
 fileContents :: IO String
 fileContents = do

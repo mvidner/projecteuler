@@ -2,3 +2,21 @@ My solutions to Project Euler problems,
 https://projecteuler.net/
 
 being a way to learn Haskell.
+
+Requirements
+------------
+
+I started with openSUSE 13.2.
+
+Find the binaries that cabal will install:
+
+    PATH=~/.cabal/bin:$PATH
+
+Update to a recent version of cabal that knows sandboxes:
+
+    cabal install cabal-install
+
+Make a sandbox and make binaries findable:
+
+    cabal sandbox init
+    PATH=`pwd`/.cabal-sandbox/bin:$PATH
