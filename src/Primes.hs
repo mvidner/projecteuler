@@ -1,7 +1,8 @@
 module Primes
-    ( primes
-    , unfaithfulSievePrimes
+    ( isPrime
+    , primes
     , trialDivisionPrimes
+    , unfaithfulSievePrimes
     ) where
 
 primes = trialDivisionPrimes
@@ -11,8 +12,8 @@ unfaithfulSievePrimes = sieve [2..]
 
 -- Melissa O'Neil
 -- in http://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf
-trialDivisionPrimes = 2 : [x | x <- [3..], isprime x]
+trialDivisionPrimes = 2 : [x | x <- [3..], isPrime x]
 
-isprime x = all (\p -> x `mod` p > 0) (factorsToTry x)
+isPrime x = all (\p -> x `mod` p > 0) (factorsToTry x)
   where
     factorsToTry x = takeWhile (\p -> p*p <= x) trialDivisionPrimes

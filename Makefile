@@ -1,5 +1,4 @@
-# make all needs this but then make check fails ?!
-GHCFLAGS=-isrc
+GHCFLAGS=-isrc -rtsopts
 %: %.hs
 	ghc --make $(GHCFLAGS) $@
 %: %.lhs
