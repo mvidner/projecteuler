@@ -41,3 +41,19 @@ In some circumstances (which?), doctest will fail like
 
 This can be fixed by making sure that the *.hs file is preferred to the *.o
 file by touching the former or removing the latter. WTF.
+
+#### One executable per problem is a pain
+
+Will need to refactor that to have a single runner.
+
+#### Used a strict fold to avoid overflowing the stack
+
+In #27.
+
+### 2015-04-15, Wednesday
+
+#### The first Hspec test
+
+A trivial test is easy but it feels stupid to separate the test from the
+documentation. Doctest would be much neater. Hopefully the single runner will
+help.

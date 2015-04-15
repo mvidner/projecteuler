@@ -82,6 +82,17 @@ test-suite doctests
                 filepath
   default-language:    Haskell2010
 
+-- from http://howistart.org/posts/haskell/1
+test-suite spec
+  main-is:             PrimesSpec.hs
+  hs-source-dirs:      tests
+  type:                exitcode-stdio-1.0
+  ghc-options:         -Wall
+  build-depends:       base,
+                       hspec >= 2.0 && < 2.1,
+                       projecteuler
+  default-language:    Haskell2010
+
 executable pe0008
   main-is:           pe0008.hs
   hs-source-dirs:    src
