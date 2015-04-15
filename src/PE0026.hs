@@ -29,6 +29,7 @@ unitFractionCycle = undefined
 
 -- | remainders n is an array indexed from 0 to n-1
 -- where (remainders n i) is  ((10 * i) `rem` n)
+--
 -- >>> remainders 6
 -- array (0,5) [(0,0),(1,4),(2,2),(3,0),(4,4),(5,2)]
 remainders :: Int -> Array Int Int
@@ -56,6 +57,7 @@ uncycle xs =
 -- [1,10,9,12,3,4]
 --
 -- Note that this is not a cycle but a graph containing a cycle:
+--
 -- >>> remainderCycle 6 1
 -- [1,4]
 remainderCycle :: Int -> Int -> [Int]

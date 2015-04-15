@@ -57,3 +57,16 @@ In #27.
 A trivial test is easy but it feels stupid to separate the test from the
 documentation. Doctest would be much neater. Hopefully the single runner will
 help.
+
+#### Using Haddock, the documentation tool
+
+The "internal" flag documents also the modules that are not exported.
+
+    cabal haddock --internal
+
+#### doc comment parse failed
+
+This message of Haddock is quite unhelpful, quoting the entire doc comment but
+not mentioning the nature or the location of the parse error. You have to find
+out with the help of the documentation:
+[(3.8 Markup)](https://www.haskell.org/haddock/doc/html/ch03s08.htm)

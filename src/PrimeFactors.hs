@@ -50,6 +50,7 @@ allDivisorsFromCanonicalRepresentation ((prime,exponent):rest) =
 
 -- |
 -- (note the list is not sorted)
+--
 -- >>> allDivisors 28
 -- [1,7,2,14,4,28]
 allDivisors :: Integer -> [Integer]

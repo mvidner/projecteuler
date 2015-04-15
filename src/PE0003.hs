@@ -10,6 +10,27 @@ candidateFactors pr n = reverse $ takeWhile (< n) pr
 largestPrimeFactor primes n = head $ filter (`divides` n) $
                                   candidateFactors primes n
 
+-- | The first factor of @n@ since @since@.
+--
+-- >>> factorSince 1 10
+-- 1
+--
+-- >>> factorSince 2 10
+-- 2
+--
+-- >>> factorSince 3 10
+-- 5
+--
+-- >>> factorSince 6 10
+-- 10
+--
+-- >>> factorSince 10 10
+-- 10
+--
+-- If @since@ > @n@ you get an exception
+--
+-- >>> factorSince 11 10
+-- *** Exception: ...
 factorSince since n =
     head [i | i <- [since..n], i `divides` n]
 
