@@ -2,7 +2,7 @@ module PE0028 where
 
 -- n: the size of the spiral is 2*n + 1
 oneCorner :: Integer -> Integer
-oneCorner n = (2*n+1)^2
+oneCorner n = (2*n+1) ^ (2::Int)
 
 sumCorners :: Integer -> Integer
 sumCorners 0 = 1

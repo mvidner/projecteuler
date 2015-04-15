@@ -1,8 +1,6 @@
 module PE0011 where
 
-import Data.Char (isDigit, digitToInt)
-import Data.List (tails)
-import System.IO
+import Data.Char (isDigit)
 
 type SizeI  = Int
 type EntryI = Int
@@ -85,6 +83,11 @@ slice size g (startRow, startCol) (dRow, dCol) =
 	     r <- [startRow + i * dRow],
 	     c <- [startCol + i * dCol]
 	    ]
+
+sliceH :: SizeI -> Grid -> (SizeI, SizeI) -> Tuple
+sliceV :: SizeI -> Grid -> (SizeI, SizeI) -> Tuple
+sliceS :: SizeI -> Grid -> (SizeI, SizeI) -> Tuple
+sliceB :: SizeI -> Grid -> (SizeI, SizeI) -> Tuple
 
 sliceH size g (row, col) = slice size g (row, col) (0, 1)
 sliceV size g (row, col) = slice size g (row, col) (1, 0)

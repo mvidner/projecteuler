@@ -12,14 +12,14 @@ fileContents = do
   hClose handle
   return contents
 
-digitString :: IO [Char]
-digitString = do
+getDigitString :: IO [Char]
+getDigitString = do
   contents <- fileContents
   return $ foldl (++) "" $ filter hasDigitsOnly $ lines contents where
     hasDigitsOnly = all isDigit
 
 spans :: Int -> [a] -> [[a]]
-spans n []     = []
+spans _ []     = []
 spans n (x:xs) = (fst $ splitAt n (x:xs)):(spans n xs)
 
 stringProduct :: String -> Integer
@@ -40,10 +40,10 @@ largestProduct numDigits digitString =
 main :: IO ()
 main = do
   len <- return 13
-  ds <- digitString
+  ds <- getDigitString
   nonzeroChunks <- return $ splitOn "0" ds
   longChunks <- return $ filter ((>= len) . length) nonzeroChunks
   print longChunks
-  (product, digits) <- return $ largestProduct len ds
-  putStrLn $ "Product: " ++ show product
+  (theProduct, digits) <- return $ largestProduct len ds
+  putStrLn $ "Product: " ++ show theProduct
   putStrLn $ "Digits:  " ++ show digits

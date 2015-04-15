@@ -4,8 +4,8 @@ import Data.Char (isDigit)
 
 main :: IO ()
 main = do
-  sum <- largeSum
-  putStrLn $ firstDigits 10 sum
+  theSum <- largeSum
+  putStrLn $ firstDigits 10 theSum
 
 for :: [a] -> (a -> b) -> [b]
 for = flip map
