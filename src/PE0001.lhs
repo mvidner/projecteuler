@@ -6,7 +6,8 @@ Problem 1:
   Find the sum of all the multiples of 3 or 5 below 1000.
 
 > module PE0001 where
-> import System.Environment (getArgs)
+>
+> import Benchmark
 
 First let's do a brute force solution to practice Haskell basics:
 
@@ -26,22 +27,13 @@ And this is an $O(n)$ solution:
 >                           where dd       = fromIntegral d
 >                                 m        = (n - 1) `div` dd
 >                                 intSum a = a * (a + 1) `div` 2
-> 
+>
 > sumFizzBuzzUnder' n = sumOfMultiplesUnder 3  n +
 >                       sumOfMultiplesUnder 5  n -
 >                       sumOfMultiplesUnder 15 n
 
-A helper for benchmarks:
-
-> argWithDefault :: Integer -> IO Integer
-> argWithDefault s = do
->   args <- getArgs
->   return $ case args of
->     (x:xs) -> read x
->     []     -> s
-
 Run it:
 
 > main = do
->   n <- argWithDefault 1000
->   print $ sumFizzBuzzUnder' n
+>   n <- arg 1 "1000"
+>   print $ sumFizzBuzzUnder' $ read n
