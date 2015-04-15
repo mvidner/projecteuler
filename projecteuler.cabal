@@ -51,32 +51,35 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Primes
-
-  -- Modules included in this library but not exported.
-  other-modules:
+  exposed-modules:
+                Benchmark, Dispatch, Primes, PrimeFactors,
                 PE0001, PE0002, PE0003, PE0004, PE0005, PE0006, PE0007, PE0008,
                 PE0009, PE0010, PE0011, PE0012, PE0013, PE0014, PE0015, PE0016,
                 PE0017, PE0018, PE0019, PE0020, PE0021, PE0022, PE0023, PE0024,
-                PE0025, PE0026, PE0027
+                PE0025, PE0026, PE0027, PE0028, PE0029, PE0030
+
+  -- Modules included in this library but not exported.
+  other-modules:
 
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4 && <5,
-                       array,
-                       bytestring,
-                       containers,
-                       split,
-                       text,
-                       time
+  build-depends:
+                base >=4 && <5,
+                array,
+                bytestring,
+                containers,
+                split,
+                text,
+                time
 
   -- Directories containing source files.
   hs-source-dirs:      src
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
+  ghc-options:       -Wall -O2 -rtsopts
 
 -- from https://github.com/sol/doctest#cabal-integration
 test-suite doctests
@@ -95,15 +98,24 @@ test-suite spec
   main-is:             PrimesSpec.hs
   hs-source-dirs:      tests
   type:                exitcode-stdio-1.0
-  ghc-options:         -Wall
+  ghc-options:         -Wall -O2
   build-depends:       base,
                        hspec >= 2.0 && < 2.1,
                        projecteuler
   default-language:    Haskell2010
 
-executable pe0008
-  main-is:           pe0008.hs
+executable pe
+  main-is:           pe.hs
   hs-source-dirs:    src
+  ghc-options:       -Wall -O2 -rtsopts
   default-language:  Haskell2010
-  build-depends:     base >4.5 && <5,
-                     split
+  build-depends:
+                base >4.5 && <5,
+                projecteuler,
+                -- WTF duplicated from library?
+                array,
+                bytestring,
+                containers,
+                split,
+                text,
+                time
