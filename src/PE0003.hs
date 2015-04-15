@@ -34,11 +34,23 @@ largestPrimeFactor primes n = head $ filter (`divides` n) $
 factorSince since n =
     head [i | i <- [since..n], i `divides` n]
 
+-- | The first factor of @n@ since @since@ ('factorSince'),
+--   and the resulting quotient.
+--
+-- >>> factorQuotientSince 3 10
+-- (5,2)
+
+-- If @since@ > @n@ you get an exception
+--
+-- >>> factorQuotientSince 11 10
+-- *** Exception: ...
 factorQuotientSince since n =
     (f, n `quot` f)
   where
     f = factorSince since n
 
+-- | Find largest factor of @n@ since @since@.
+--   As @n@ has no factors less than @since@, that factor is a prime.
 lpf3' since n =
     case factorQuotientSince since n of
     (prime, 1)  -> (prime, 1)
@@ -47,6 +59,7 @@ lpf3' since n =
 lpf3 1 = 1
 lpf3 n = fst $ lpf3' 2 n
 
+-- | A mapping between algorithm names and implementations
 algo "lpf1" = largestPrimeFactor Primes.unfaithfulSievePrimes
 algo "lpf2" = largestPrimeFactor Primes.trialDivisionPrimes
 algo "lpf3" = lpf3
