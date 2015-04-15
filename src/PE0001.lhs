@@ -22,18 +22,20 @@ First let's do a brute force solution to practice Haskell basics:
 
 And this is an $O(n)$ solution:
 
-> sumOfMultiplesUnder :: Int -> Integer -> Integer
+> sumOfMultiplesUnder :: Integral a => a -> a -> a
 > sumOfMultiplesUnder d n = dd * (intSum m)
 >                           where dd       = fromIntegral d
 >                                 m        = (n - 1) `div` dd
 >                                 intSum a = a * (a + 1) `div` 2
 >
+> sumFizzBuzzUnder' :: Integral a => a -> a
 > sumFizzBuzzUnder' n = sumOfMultiplesUnder 3  n +
 >                       sumOfMultiplesUnder 5  n -
 >                       sumOfMultiplesUnder 15 n
 
 Run it:
 
+> main :: IO ()
 > main = do
 >   n <- arg 1 "1000"
->   print $ sumFizzBuzzUnder' $ read n
+>   print $ sumFizzBuzzUnder' $ (read n :: Integer)

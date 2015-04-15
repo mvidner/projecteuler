@@ -1,5 +1,7 @@
 module PE0004 where
 
+import Benchmark
+
 isPalindrome :: String -> Bool
 isPalindrome s = s == reverse s
 
@@ -10,6 +12,9 @@ productsOfNDigitFactors n = let limit = 10^n
 {-
 OK to brute-force this for n <= 3, even 4
 -}
+-- |
+-- >>> largestPalindromeProduct 2
+-- 9009
 largestPalindromeProduct :: Int -> Int
 largestPalindromeProduct n = maximum $
                              filter (isPalindrome . show)
@@ -17,4 +22,5 @@ largestPalindromeProduct n = maximum $
 
 main :: IO ()
 main = do
-  print $ largestPalindromeProduct 3
+    n <- arg 1 "3"
+    print $ largestPalindromeProduct $ read n
