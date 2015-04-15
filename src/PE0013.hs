@@ -1,12 +1,13 @@
 module PE0013 where
 
-import Data.List
 import Data.Char (isDigit)
 
+main :: IO ()
 main = do
   sum <- largeSum
   putStrLn $ firstDigits 10 sum
 
+for :: [a] -> (a -> b) -> [b]
 for = flip map
 
 numbersIn :: String -> [Integer]
@@ -16,6 +17,7 @@ numbersIn contents =
       then read line :: Integer
       else 0
 
+hasDigitsOnly :: String -> Bool
 hasDigitsOnly s = (all isDigit s) && (s /= "")
 
 largeSum :: IO Integer

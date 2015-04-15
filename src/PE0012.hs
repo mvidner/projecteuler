@@ -3,11 +3,13 @@ module PE0012 where
 import Primes (trialDivisionPrimes)
 import Data.List (find, group)
 
+primes :: [Integer]
 primes =  trialDivisionPrimes
 
 divides :: Integer -> Integer -> Bool
 n `divides` k = k `mod` n == 0
 
+possibleFirstFactors :: Integer -> [Integer]
 possibleFirstFactors n = takeWhile (\p -> p*p <= n) primes
 
 -- The first prime factor or Nothing if n is prime or <= 1
@@ -37,12 +39,13 @@ canonicalRepresentation n =
 -- |
 -- >>> prod [1,3,9] [1,2,4]
 -- [1,2,4,3,6,12,9,18,36]
+prod :: Num t => [t] -> [t] -> [t]
 prod as bs = [a * b | a <- as, b <- bs]
 
 allDivisorsFromCanonicalRepresentation :: [(Integer, Int)] -> [Integer]
 allDivisorsFromCanonicalRepresentation [] = [1]
-allDivisorsFromCanonicalRepresentation ((prime,exponent):rest) =
-  [prime ^ e | e <- [0..exponent]] `prod` (allDivisorsFromCanonicalRepresentation rest)
+allDivisorsFromCanonicalRepresentation ((prime, power):rest) =
+  [prime ^ e | e <- [0..power]] `prod` (allDivisorsFromCanonicalRepresentation rest)
 
 -- |
 -- (note the list is not sorted)
@@ -53,7 +56,9 @@ allDivisors :: Integer -> [Integer]
 allDivisors n = allDivisorsFromCanonicalRepresentation $
 	          canonicalRepresentation n
 
+triangulars :: [Integer]
 triangulars = [n*(n+1) `div` 2 | n <- [1..]]
 
+main :: IO ()
 main = do
   print $ find ((>500) . length . allDivisors) triangulars

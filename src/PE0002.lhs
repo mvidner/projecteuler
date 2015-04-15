@@ -23,14 +23,18 @@ This is a brute force solution.
 \begin{code}
 module PE0002 where
 
+fib2 :: (Integer, Integer) -> (Integer, Integer)
 fib2 (a,b) = (b,a+b)
 
 -- |
 -- >>> take 10 fibs
 -- [0,1,1,2,3,5,8,13,21,34]
-fibs :: Integral a => [a]
-fibs = map fst $ scanl (\a  _ -> fib2 a) (0,1) [1..]
+fibs :: [Integer]
+fibs = map fst $ scanl (\a  _ -> fib2 a) (0,1) integers
+    where
+      integers = [1..] :: [Integer]
 
+main :: IO ()
 main = do
   print $ sum $ filter even $ takeWhile (<4000000) fibs
 \end{code}

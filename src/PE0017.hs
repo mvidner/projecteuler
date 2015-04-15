@@ -2,14 +2,17 @@ module PE0017 where
 
 import Data.Char (isLetter)
 
+digitWords :: [String]
 digitWords =
   ["zero", "one", "two", "three", "four",
    "five", "six", "seven", "eight", "nine"]
 
+teens :: [String]
 teens =
   ["ten", "eleven", "twelve", "thirteen", "fourteen",
    "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 
+tens :: [String]
 tens =
   [undefined, undefined, "twenty", "thirty", "forty",
    "fifty", "sixty", "seventy", "eighty", "ninety"]
@@ -25,8 +28,13 @@ numberInWords n
   | otherwise = "many"
 
 
+tensInWords :: Int -> String
 tensInWords n = tens !! (n `div` 10)
+
+hundredsInWords :: Int -> String
 hundredsInWords n = (numberInWords (n `div` 100)) ++ " hundred"
+
+thousandsInWords :: Int -> String
 thousandsInWords n = (numberInWords (n `div` 1000)) ++ " thousand"
 
 -- connectedNumberInWords "twenty" "-" 0
@@ -43,5 +51,6 @@ connectedNumberInWords bigWord connector smallNumber =
   then bigWord
   else bigWord ++ connector ++ (numberInWords smallNumber)
 
+main :: IO ()
 main = do
   print $ sum $ map (length . (filter isLetter) . numberInWords) [1..1000]

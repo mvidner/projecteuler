@@ -11,6 +11,7 @@ divides :: Integer -> Integer -> Bool
 n `divides` k = k `mod` n == 0
 
 -- primes that are less or equal to (sqrt n) and thus can be a factor of n
+possiblePrimeFactors :: Integer -> [Integer]
 possiblePrimeFactors n = takeWhile (\p -> p*p <= n) primes
 
 -- The first prime factor or Nothing if n is prime or <= 1
@@ -45,8 +46,8 @@ prod as bs = [a * b | a <- as, b <- bs]
 
 allDivisorsFromCanonicalRepresentation :: [(Integer, Int)] -> [Integer]
 allDivisorsFromCanonicalRepresentation [] = [1]
-allDivisorsFromCanonicalRepresentation ((prime,exponent):rest) =
-  [prime ^ e | e <- [0..exponent]] `prod` (allDivisorsFromCanonicalRepresentation rest)
+allDivisorsFromCanonicalRepresentation ((prime, power):rest) =
+  [prime ^ e | e <- [0..power]] `prod` (allDivisorsFromCanonicalRepresentation rest)
 
 -- |
 -- (note the list is not sorted)

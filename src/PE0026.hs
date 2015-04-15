@@ -4,7 +4,6 @@ module PE0026 where
 This can be solved with permutations of the possible remainders when doing
 long division.
 -}
-import Control.Monad (liftM)
 import Data.Array
 import Data.List (foldl', maximumBy)
 import Data.Function (on)
@@ -51,6 +50,7 @@ uncycle xs =
     uncycle' sofar (z:zs) = if z `elem` sofar
                             then sofar
                             else uncycle' (z:sofar) zs
+    uncycle' sofar []     = sofar -- wasnt infinite after all
 
 -- |
 -- >>> remainderCycle 13 1
@@ -64,7 +64,7 @@ remainderCycle :: Int -> Int -> [Int]
 remainderCycle n i =
     uncycle $ iterate nextRemainder i
   where
-    nextRemainder i = remainders n ! i
+    nextRemainder j = remainders n ! j
 
 updateAlist :: Int -> Int -> [(Int, Maybe Int)]
 updateAlist n i = [(r, Just $ length c) | r <- c] where c = remainderCycle n i
@@ -82,13 +82,16 @@ knownRemainderCycleLengths n =
 maxRemainderCycleLength n =
     maximum $ map length [remainderCycle n i | i <- [0..n - 1]]
 -}
+maxRemainderCycleLength :: Int -> Int
 maxRemainderCycleLength n =
     case maximum $ elems $ knownRemainderCycleLengths n of
         Just m -> m
         _      -> error "knownRemainderCycleLengths isnt total"
 
+answer :: (Int, Int)
 answer =
     let lengths = [(i, maxRemainderCycleLength i) | i <- [1..999]]
     in maximumBy (compare `on` snd) lengths
 
+main :: IO ()
 main = print answer

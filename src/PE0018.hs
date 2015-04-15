@@ -45,7 +45,7 @@ getGraph = do
 
 getGraphText :: String -> String
 getGraphText = unlines . (filter startsWithDigit) . lines
-  where startsWithDigit s = case s of c:cs -> isDigit c
+  where startsWithDigit s = case s of c:_  -> isDigit c
                                       _    -> False
 
 parseGraph :: String -> TriangleGraph
@@ -54,6 +54,7 @@ parseGraph s = map parseGraphLine (lines s)
 parseGraphLine :: String -> Row
 parseGraphLine l = map read (words l)
 
+main :: IO ()
 main = do
   g <- getGraph
   print $ maximumPathSum g
