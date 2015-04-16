@@ -17,6 +17,7 @@ include it once in your sum.
 -}
 
 import Data.List (sort)
+import qualified Data.Set
 
 import Benchmark (arg)
 
@@ -31,18 +32,39 @@ isPandigitalN n s = (length s) == n && (sort s == panN n)
 isPandigitalListN :: Int -> [Int] -> Bool
 isPandigitalListN n xs = isPandigitalN n $ concat $ map show xs
 
-pandigitalProductsN :: Int -> [Int]
-pandigitalProductsN n = [p
-                        | a <- [1..10^n]
-                        , b <- [1..10^n]
-                        , p <- [a * b]
-                        , isPandigitalListN n [a, b, p]
-                        ]
+{-
+A positive integer @i@ has (truncate (logBase 10 i)) digits
+-}
+numDigits :: Int -> Int
+numDigits n = length $ show n
+
+-- | Minimal and maximal @n@-digit integer
+-- >>> nBounds 3
+-- (100,999)
+nBounds :: Int -> (Int, Int)
+nBounds n = (10 ^ (n-1) , (10 ^ n) - 1)
+
+
+pandigitalProductsN :: Int -> [(Int,Int,Int)]
+pandigitalProductsN n = [
+    (a,b,p)
+    | a <- [2..alimit]
+    , b <- [(bLower a)..(bUpper a)]
+    , p <- [a * b]
+    , isPandigitalListN n [a, b, p]
+    ]
+  where
+    alimit = truncate $ (10::Double) ** (fromIntegral n / 2.0)
+    bLower _  = 2
+    bUpper aa = aa
 
 main :: IO ()
 main = do
     n <- arg 1 "9"
     let n' = read n :: Int
     putStrLn "A very stupid algorithm"
-    print $ take 2 $ pandigitalProductsN n'
+    let ps = pandigitalProductsN n'
+    print ps
+    let uniqueProducts = Data.Set.fromList $ map (\(_,_,p) -> p) ps
+    print $ sum $ Data.Set.toList uniqueProducts
 

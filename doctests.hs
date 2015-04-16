@@ -4,7 +4,7 @@ import System.FilePath (replaceExtension)
 import Test.DocTest
 import Text.Printf (printf)
 
-numProblems = 26 :: Int
+numProblems = 99 :: Int
 dir = "src"
 
 objectForSource :: String -> String
