@@ -80,7 +80,7 @@ library
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
-  ghc-options:       -Wall -O2 -rtsopts
+  ghc-options:       -Wall -O2 -rtsopts -fprof-auto
 
 -- from https://github.com/sol/doctest#cabal-integration
 test-suite doctests
@@ -108,7 +108,7 @@ test-suite spec
 executable pe
   main-is:           pe.hs
   hs-source-dirs:    src
-  ghc-options:       -Wall -O2 -rtsopts
+  ghc-options:       -Wall -O2 -rtsopts -fprof-auto
   default-language:  Haskell2010
   build-depends:
                 base >4.5 && <5,

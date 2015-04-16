@@ -27,16 +27,28 @@ panN n
     | otherwise = undefined
 
 isPandigitalN :: Int -> String -> Bool
-isPandigitalN n s = (length s) == n && (sort s == panN n)
+isPandigitalN n s = sort s == panN n
 
-isPandigitalListN :: Int -> [Int] -> Bool
-isPandigitalListN n xs = isPandigitalN n $ concat $ map show xs
+lengthMatches :: Int -> Int -> Int -> Int -> Bool
+lengthMatches n a b p = n == (numDigits a) + (numDigits b) + (numDigits p)
+
+isPandigitalListN :: Int -> Int -> Int -> Int -> Bool
+isPandigitalListN n a b p =
+    (lengthMatches n a b p) && isPandigitalN n str
+  where
+    str = (show a) ++ (show b) ++ (show p)
 
 {-
-A positive integer @i@ has (truncate (logBase 10 i)) digits
+A positive integer @i@ has (1 + truncate (logBase 10 i)) digits
 -}
+numDigitsL :: Int -> Int
+numDigitsL n = 1 + truncate (logBase (10::Double) $ fromIntegral n)
+
+numDigitsS :: Int -> Int
+numDigitsS n = length $ show n
+
 numDigits :: Int -> Int
-numDigits n = length $ show n
+numDigits = numDigitsL
 
 -- | Minimal and maximal @n@-digit integer
 -- >>> nBounds 3
@@ -44,6 +56,10 @@ numDigits n = length $ show n
 nBounds :: Int -> (Int, Int)
 nBounds n = (10 ^ (n-1) , (10 ^ n) - 1)
 
+-- | If the multiplicand is a, how many digits are left
+--   for b and p together of the n total
+freeDigits :: Int -> Int -> Int
+freeDigits n a = n - numDigits a
 
 pandigitalProductsN :: Int -> [(Int,Int,Int)]
 pandigitalProductsN n = [
@@ -51,18 +67,18 @@ pandigitalProductsN n = [
     | a <- [2..alimit]
     , b <- [(bLower a)..(bUpper a)]
     , p <- [a * b]
-    , isPandigitalListN n [a, b, p]
+    , isPandigitalListN n a  b p
     ]
   where
     alimit = truncate $ (10::Double) ** (fromIntegral n / 2.0)
     bLower _  = 2
-    bUpper aa = aa
+    bUpper aa =
+        min aa $ (snd $ nBounds $ freeDigits n aa) `div` aa
 
 main :: IO ()
 main = do
     n <- arg 1 "9"
     let n' = read n :: Int
-    putStrLn "A very stupid algorithm"
     let ps = pandigitalProductsN n'
     print ps
     let uniqueProducts = Data.Set.fromList $ map (\(_,_,p) -> p) ps
