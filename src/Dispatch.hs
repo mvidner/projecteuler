@@ -3,6 +3,8 @@ module Dispatch
            dispatch
        ) where
 
+-- Add here, and to /projecteuler.cabal(library/exposed-modules)
+
 import qualified PE0001(main)
 import qualified PE0002(main)
 import qualified PE0003(main)
@@ -33,6 +35,7 @@ import qualified PE0027(main)
 import qualified PE0028(main)
 import qualified PE0029(main)
 import qualified PE0030(main)
+import qualified PE0031(main)
 
 -- | An IO action dispatching from the common 'Main.main' to the
 --   respective main of each problem module.
@@ -67,4 +70,5 @@ dispatch 0027 = PE0027.main
 dispatch 0028 = PE0028.main
 dispatch 0029 = PE0029.main
 dispatch 0030 = PE0030.main
+dispatch 0031 = PE0031.main
 dispatch    n = error $ "No runner defined for problem " ++ show n
