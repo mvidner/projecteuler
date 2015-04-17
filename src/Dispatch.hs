@@ -37,6 +37,7 @@ import qualified PE0029(main)
 import qualified PE0030(main)
 import qualified PE0031(main)
 import qualified PE0032(main)
+import qualified PE0033(main)
 
 -- | An IO action dispatching from the common 'Main.main' to the
 --   respective main of each problem module.
@@ -73,4 +74,5 @@ dispatch 0029 = PE0029.main
 dispatch 0030 = PE0030.main
 dispatch 0031 = PE0031.main
 dispatch 0032 = PE0032.main
+dispatch 0033 = PE0033.main
 dispatch    n = error $ "No runner defined for problem " ++ show n
